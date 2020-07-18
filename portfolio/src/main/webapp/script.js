@@ -13,6 +13,30 @@
 // limitations under the License.
 
 /**
+ * Fetches stats from the servers and adds them to the DOM.
+ */
+function getData() {
+  fetch('/data').then(response => response.json()).then((stats) => {
+    // stats is an object, not a string, so we have to
+    // reference its fields to create HTML content
+
+    const statsListElement = document.getElementById('data-container');
+    statsListElement.innerHTML = '';
+    statsListElement.appendChild(
+        createListElement('Start time: ' + stats.startTime));
+    statsListElement.appendChild(
+        createListElement('Current time: ' + stats.currentTime));
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
+
+/**
  * Fetches a random greeting from the server and adds it to the DOM.
  */
 function getRandomGreeting() {
