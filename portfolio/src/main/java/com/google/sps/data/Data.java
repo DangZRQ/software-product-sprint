@@ -15,23 +15,15 @@
 package com.google.sps.data;
 
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /** Class containing server statistics. */
 public final class Data {
 
-  private final Date startTime;
-  private final Date currentTime;
-
-  public Data(Date startTime, Date currentTime) {
-    this.startTime = startTime;
-    this.currentTime = currentTime;
-  }
-
-  public Date getStartTime() {
-    return startTime;
-  }
-
-  public Date getCurrentTime() {
-    return currentTime;
+  private final List<String> comments = new ArrayList<>();
+  
+  public void addComment(String comment) {
+      comments.add(comment);
   }
 }
