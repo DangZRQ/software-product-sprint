@@ -16,15 +16,18 @@
  * Fetches stats from the servers and adds them to the DOM.
  */
 function getData() {
-  fetch('/data').then(response => response.json()).then((data) => {
+  fetch('/data').then(response => response.json()).then((comments) => {
     // stats is an object, not a string, so we have to
     // reference its fields to create HTML content
 
     const commentsListElement = document.getElementById('data-container');
     commentsListElement.innerHTML = '';
-    for(var i = 0; i < data.comments.length; i++) {
-        commentsListElement.appendChild(createListElement(data.comments[i]));
-    };
+    // for(var i = 0; i < data.comments.length; i++) {
+    //     commentsListElement.appendChild(createListElement(data.comments[i]));
+    // };
+    comments.forEach((comment) => {
+      commentsListElement.appendChild(createListElement(comment.text));
+    })
   });
 }
 

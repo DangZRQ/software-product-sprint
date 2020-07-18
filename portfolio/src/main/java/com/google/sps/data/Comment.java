@@ -18,12 +18,15 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Class containing server statistics. */
-public final class Data {
+public final class Comment {
 
-  private final List<String> comments = new ArrayList<>();
-  
-  public void addComment(String comment) {
-      comments.add(comment);
+  private final long id;
+  private final String text;
+  private final long timestamp;
+
+  public Comment(long id, String text, long timestamp) {
+    this.id = id;
+    this.text = text;
+    this.timestamp = timestamp;
   }
 }
