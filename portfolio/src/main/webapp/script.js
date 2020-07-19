@@ -12,6 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+/** Fetches color data and uses it to create a chart. */
+function drawChart() {
+  fetch('/vote-data').then(response => response.json())
+  .then((titleVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Title');
+    data.addColumn('number', 'Votes');
+    Object.keys(titleVotes).forEach((title) => {
+      data.addRow([title, titleVotes[title]]);
+    });
+
+    const options = {
+      'title': 'Favorite Title',
+      'width':300,
+      'height':300
+    };
+
+    const chart = new google.visualization.PieChart(
+        document.getElementById('chart-container'));
+    chart.draw(data, options);
+  });
+}
+
 /**
  * Fetches stats from the servers and adds them to the DOM.
  */
