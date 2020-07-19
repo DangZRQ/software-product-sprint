@@ -29,8 +29,8 @@ function drawChart() {
 
     const options = {
       'title': 'Favorite Title',
-      'width':600,
-      'height':500
+      'width':300,
+      'height':300
     };
 
     const chart = new google.visualization.PieChart(
